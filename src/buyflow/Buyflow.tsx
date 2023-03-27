@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AgeStep from './steps/AgeStep'
 import EmailStep from './steps/EmailStep'
 import NameStep from './steps/NameStep'
+import { CheckoutData } from './steps/Step.interface'
 import SummaryStep from './steps/SummaryStep'
 
 interface BuyflowProps {
@@ -57,7 +58,11 @@ const Buyflow: React.FC<BuyflowProps> = ({ productId }) => {
     selectedProduct.initial_step
   )
 
-  const [collectedData, updateData] = useState({
+  const [collectedData, updateData] = useState<CheckoutData>({
+    names: {
+      firstName: '',
+      lastName: '',
+    },
     email: '',
     age: 0,
   })

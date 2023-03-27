@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ErrorMessage } from './ErrorMessage'
 import { StepProps } from './Step.interface'
 
 type NameStepProps = StepProps
@@ -6,6 +7,19 @@ type NameStepProps = StepProps
 const NameStep: React.FC<NameStepProps> = ({ onSave }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const onNextStep = () => {
+    if (!firstName) {
+      setErrorMessage('First Name is required')
+      return
+    }
+    if (!lastName) {
+      setErrorMessage('Last Name is required')
+      return
+    }
+    setErrorMessage('')
+    onSave('names', { firstName, lastName })
+  }
 
   return (
     <>
@@ -28,9 +42,9 @@ const NameStep: React.FC<NameStepProps> = ({ onSave }) => {
           value={lastName}
         ></input>
       </div>
-      <button onClick={() => onSave('names', { firstName, lastName })}>
-        Next
-      </button>
+      <ErrorMessage error={errorMessage} />
+
+      <button onClick={onNextStep}>Next</button>
     </>
   )
 }
