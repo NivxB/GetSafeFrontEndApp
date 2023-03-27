@@ -1,0 +1,2 @@
+# GetSafeFrontEndApp
+Created with CodeSandbox
