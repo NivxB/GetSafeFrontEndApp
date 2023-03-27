@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AgeStep from './steps/AgeStep'
 import EmailStep from './steps/EmailStep'
+import NameStep from './steps/NameStep'
 import SummaryStep from './steps/SummaryStep'
 
 interface BuyflowProps {
@@ -8,6 +9,7 @@ interface BuyflowProps {
 }
 
 enum PRODUCT_STEPS {
+  CONTACT_NAME,
   CONTACT_EMAIL,
   CONTACT_AGE,
   SUMMARY,
@@ -15,12 +17,17 @@ enum PRODUCT_STEPS {
 
 export enum ProductIds {
   devInsurance = 'insurance_dev',
+  designerInsurance = 'insurence_designer',
 }
 
 const PRODUCT_CONFIG = {
   [ProductIds.devInsurance]: {
     title: 'Developer Insurance',
     initial_step: PRODUCT_STEPS.CONTACT_EMAIL,
+  },
+  [ProductIds.designerInsurance]: {
+    title: 'Designer Insurance',
+    initial_step: PRODUCT_STEPS.CONTACT_NAME,
   },
 }
 
@@ -32,6 +39,10 @@ const STEP_CONFIG = {
   [PRODUCT_STEPS.CONTACT_EMAIL]: {
     component: EmailStep,
     nextStep: PRODUCT_STEPS.CONTACT_AGE,
+  },
+  [PRODUCT_STEPS.CONTACT_NAME]: {
+    component: NameStep,
+    nextStep: PRODUCT_STEPS.CONTACT_EMAIL,
   },
   [PRODUCT_STEPS.SUMMARY]: {
     component: SummaryStep,
