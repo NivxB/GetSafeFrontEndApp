@@ -43,3 +43,9 @@
     transform: rotate(360deg);
   }
 }
+
+.errorMessage {
+  display: block;
+  font-size: 0.8rem;
+  color: red;
+}
