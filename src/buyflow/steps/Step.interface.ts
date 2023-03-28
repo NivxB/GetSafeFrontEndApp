@@ -1,3 +1,5 @@
+import type { ProductIds } from "../Buyflow"
+
 export interface StepProps {
   onSave: (property: string, value: unknown) => void
 }
@@ -8,5 +10,6 @@ export interface CheckoutData {
     lastName: string
   }
   email: string
-  age: number
+  age: number,
+  product: ProductIds
 }

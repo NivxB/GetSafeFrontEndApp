@@ -65,6 +65,7 @@ const Buyflow: React.FC<BuyflowProps> = ({ productId }) => {
     },
     email: '',
     age: 0,
+    product: productId
   })
   const getStepCallback = (nextStep: PRODUCT_STEPS | null) => (
     field: string,
